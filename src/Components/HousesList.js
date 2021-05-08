@@ -2,39 +2,32 @@ import React from "react";
 import { House } from "./House";
 import { housesApi } from "../rest/HousesApi.js";
 
-export class HouseList extends React.Component {
-    state = {
-        houses = []
-    };
+export class HousesList extends React.Component {
+  state = {
+    houses: [],
+  };
 
-    componentDidMount() {
-        this.fetchHouses();
-    };
+  componentDidMount() {
+    this.fetchHouses();
+  }
 
-    fetchHouses = async () => {
-        const houses = await housesApi.get();
-        this.setState({ houses });
-    };
+  fetchHouses = async () => {
+    const houses = await housesApi.get();
+    this.setState({ houses });
+  };
 
-    updateHouse = async (updateHouse) => {
-        await housesApi.put(updateHouse);
-        this.fetchHouses();
-    };
+  updateHouse = async (updateHouse) => {
+    await housesApi.put(updateHouse);
+    this.fetchHouses();
+  };
 
-    render() {
-        return (
-            <div className="house-list">
-                {this.state.houses.map((house) => (
-                    <House 
-                        house={house}
-                        key={house._id}
-                        updateHouse={this.updateHouse}
-                        />
-                ))}
-
-            </div>
-        )
-    }
-    
-
+  render() {
+    return (
+      <div className="house-list">
+        {this.state.houses.map((house) => (
+          <House house={house} key={house._id} updateHouse={this.updateHouse} />
+        ))}
+      </div>
+    );
+  }
 }

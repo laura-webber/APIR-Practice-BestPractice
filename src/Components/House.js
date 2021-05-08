@@ -4,7 +4,7 @@ import { NewRoomForm } from "./NewRoomForm";
 export const House = (props) => {
   const { house, updateHouse } = props;
 
-  const deleteRoom = (roomID) => {
+  const deleteRoom = (roomId) => {
     const updatedHouse = {
       ...house,
       rooms: house.rooms.filter((x) => x._id !== roomId),
@@ -20,7 +20,7 @@ export const House = (props) => {
     <ul>
       {house.rooms.map((room, index) => (
         <li key={index}>
-          <lablel> {`${room.name} Area: ${room.area}`} </lablel>
+          <label> {`${room.name} Area: ${room.area}`} </label>
           <button onClick={(e) => deleteRoom(room._id)}>Delete</button>
         </li>
       ))}
@@ -30,7 +30,7 @@ export const House = (props) => {
   return (
     <div>
       <h1>{house.name}</h1>
-      {rooms({ room, houseId: house._id, deleteRoom })}
+      {rooms({ rooms, houseId: house._id, deleteRoom })}
       <NewRoomForm addNewRoom={addNewRoom} />
     </div>
   );
